@@ -62,7 +62,11 @@ export function collectStar(player, star) {
             ? Phaser.Math.Between(400, 800)
             : Phaser.Math.Between(0, 400);
 
-        createBomb(this.bombs);
+        let bomb = this.bombs.create(x, 16, 'bomb');
+        bomb.setBounce(1);
+        bomb.setCollideWorldBounds(true);
+
+        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20)
     }
 }
 
@@ -109,14 +113,6 @@ export function drawStars() {
     this.stars.children.iterate((star) => {
         star.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
     });
-}
-
-export function createBomb(bombs) {
-    let bomb = bombs.create(x, 16, 'bomb');
-    bomb.setBounce(1);
-    bomb.setCollideWorldBounds(true);
-
-    bomb.setVelocity(Phaser.Math.Between(-200, 200), 20)
 }
 
 export function drawScore() {
